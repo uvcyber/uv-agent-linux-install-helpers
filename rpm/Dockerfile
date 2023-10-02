@@ -1,8 +1,13 @@
 FROM quay.io/centos/centos:stream8
 
-RUN dnf install -y rpm-build m4
+COPY requirements.txt /
 
-COPY build.sh /build.sh
-COPY spec-template.m4 /spec-template.m4
+RUN dnf install -y rpm-build python3.11 python3.11-pip   \
+    && pip3 install -r /requirements.txt
 
-ENTRYPOINT [ "/build.sh" ]
+COPY entrypoint.sh /entrypoint.sh
+COPY *.j2 /
+COPY *.py /
+
+
+ENTRYPOINT [ "/entrypoint.sh" ]
