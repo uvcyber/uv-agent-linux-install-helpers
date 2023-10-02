@@ -1,0 +1,31 @@
+# -*- rpm -*-
+#
+
+Name:       uvcyber-agent-conf-{{name}}
+Version:    {{version}}
+Release:    {{release}}
+BuildArch:  noarch
+Summary:    UVCyber Bootstrap Configuration
+URL:        https://www.uvcyber.com
+License:    Proprietary
+
+
+Requires:   uvcyber-agent
+
+%description
+Ultraviolet Endpoint Agent Bootstrap
+
+%post
+
+# If a node has already been registered, do not
+if ! [[ -f /opt/uvcyber-agent/etc/agentstate.json ]]; then
+
+{%- if discoveryurl is defined %}
+    /opt/uvcyber-agent/bin/uvagentctl set discovery-url {{discoveryurl}}
+{% endif %}
+
+    /opt/uvcyber-agent/bin/uvagentctl register --tenant-id={{tenantid}} --regcode={{regcode}}
+    systemctl restart uvcyber-agent
+fi
+
+%files

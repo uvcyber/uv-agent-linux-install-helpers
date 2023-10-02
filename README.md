@@ -15,15 +15,13 @@ cd rpm
 docker build -t uv-builder .
 ```
 
-Update the configuration file.  The format is:
-```
-location-name version tenant-id registration-code
-```
+Update the configuration file.  The format is yaml and it should be relatively obvious
+how it's supposed to work.  Let me (Duane) know if not.
 
 Run the builder:
 
 ```
-docker run --rm -it -v ./rpmbuild:/root/rpmbuild -v ./input.txt:/input.txt uv-builder:latest
+docker run --rm -it -v ./rpmbuild:/root/rpmbuild -v ./input.yaml:/input.yaml uv-builder:latest
 ```
 
 You'll have new RPMs in the `./rpmbuild` directory.

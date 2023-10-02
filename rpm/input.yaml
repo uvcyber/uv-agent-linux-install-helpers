@@ -1,0 +1,16 @@
+#output_path: /root/rpmbuild/SPECS
+#template: /rpm-spec-template.j2
+
+defaults:
+  version: "1.0"
+  release: 1
+  tenantid: 102ee0d0-2351-4b86-b251-de6dcb66f3d8
+
+locations:
+  - name: fairfax
+    regcode: b6e1344f-c07e-4447-a997-4dd009326105
+  - name: portland
+    regcode: 59c33125-2fd9-4cfe-b74d-4fd7df7002da
+  - name: phoenix
+    regcode: a50837b7-b7ab-41a5-9d00-52d9ce6f9530
+    discoveryurl: https://a1.build.uvcyber.dev
